@@ -21,11 +21,11 @@ public class RepositorioControladorEventoImpl implements RepositorioControladorE
     @Override
     public Optional<EventoDTO> agregarUnEventoConUsuario(EventoDTO eventoDTO, Long idUsuario) {
         Evento eventoAGuardar = jpaRepositorioEvento.save(eventoMapper.eventoDtoHaciaEvento(eventoDTO));
-        eventoAGuardar.setIdCreador(idUsuario);
-        jpaRepositorioEvento.save(eventoAGuardar);
         if (eventoAGuardar == null){
             return Optional.empty();
         }
+        eventoAGuardar.setIdCreador(idUsuario);
+        jpaRepositorioEvento.save(eventoAGuardar);
         return Optional.of(eventoMapper.eventoHaciaEventoDto(eventoAGuardar));
     }
 
