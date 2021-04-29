@@ -18,7 +18,7 @@ public abstract class UsuarioMapper {
                 .build();
     }
 
-    public List<UsuarioDTO> usuarioHaciaUsuarioDto( List<Usuario> listaUsuario){
+    public List<UsuarioDTO> listaUsuarioHaciaUsuarioDto( List<Usuario> listaUsuario){
         List<UsuarioDTO> listaBancoDto = listaUsuario.stream().map(lista -> UsuarioDTO.builder()
                 .id(lista.getId())
                 .nombre(lista.getNombre())

@@ -23,6 +23,6 @@ public class RepositorioControoladorUsuarioImpl implements RepositorioControolad
 
     @Override
     public List<UsuarioDTO> listarUsuarios() {
-        return usuarioMapper.usuarioHaciaUsuarioDto(jpaRepositorio.findAll());
+        return usuarioMapper.listaUsuarioHaciaUsuarioDto(jpaRepositorio.findAll());
     }
 }
