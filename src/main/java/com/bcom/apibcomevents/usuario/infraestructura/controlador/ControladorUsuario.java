@@ -18,7 +18,7 @@ public class ControladorUsuario {
     private final ControladorServicioUsuario controladorServicioUsuario;
 
     @PostMapping
-    public ResponseEntity<UsuarioDTO> agregarUsuario(@RequestBody UsuarioDTO usuarioDTO){
+    public ResponseEntity<HttpHeaders> agregarUsuario(@RequestBody UsuarioDTO usuarioDTO){
         Long ubicacion = controladorServicioUsuario.guardarUsuario(usuarioDTO);
         HttpHeaders cabezera = new HttpHeaders();
         cabezera.add("Ubicacion","/usuarios/"+ ubicacion);
