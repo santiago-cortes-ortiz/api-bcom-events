@@ -17,6 +17,9 @@ public class RepositorioControladorAsistenciaImpl implements RepositorioControla
 
     @Override
     public Optional<AsistenciaDTO> guardarAsistencia(AsistenciaDTO asistenciaDTO) {
+        if (jpaRepositorioAsistencia.findById(asistenciaDTO.getIdEvento()).isEmpty() || jpaRepositorioAsistencia.findById(asistenciaDTO.getIdUsuario()).isEmpty()){
+            return Optional.empty();
+        }
         return Optional.of(asistenciaMapper
                 .asistenciaHaciaAsistenciaDto(jpaRepositorioAsistencia
                         .save(asistenciaMapper
