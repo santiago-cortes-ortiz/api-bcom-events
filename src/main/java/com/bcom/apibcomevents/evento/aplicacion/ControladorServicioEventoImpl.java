@@ -1,6 +1,7 @@
 package com.bcom.apibcomevents.evento.aplicacion;
 
 import com.bcom.apibcomevents.evento.dominio.dto.EventoDTO;
+import com.bcom.apibcomevents.evento.dominio.repositorio.RepositorioControladorEvento;
 import com.bcom.apibcomevents.evento.dominio.servicio.ControladorServicioEvento;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,18 +12,21 @@ import java.util.Optional;
 @AllArgsConstructor
 @Service
 public class ControladorServicioEventoImpl implements ControladorServicioEvento {
+
+    private final RepositorioControladorEvento repositorioControladorEvento;
+
     @Override
     public Optional<EventoDTO> agregarUnEventoConUsuario(EventoDTO eventoDTO, Long idUsuario) {
-        return Optional.empty();
+        return repositorioControladorEvento.agregarUnEventoConUsuario(eventoDTO, idUsuario);
     }
 
     @Override
     public List<EventoDTO> listarEventos() {
-        return null;
+        return repositorioControladorEvento.listarEventos();
     }
 
     @Override
     public Optional<EventoDTO> actualizarEvento(EventoDTO eventoDTO, Long idEvento) {
-        return Optional.empty();
+        return repositorioControladorEvento.actualizarEvento(eventoDTO, idEvento);
     }
 }

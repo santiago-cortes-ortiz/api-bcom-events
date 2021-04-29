@@ -23,6 +23,18 @@ public abstract class EventoMapper {
                 .build();
     }
 
+    public EventoDTO eventoHaciaEventoDto(Evento evento){
+        return EventoDTO.builder()
+                .id(evento.getId())
+                .idCreador(evento.getIdCreador())
+                .nombre(evento.getNombre())
+                .fecha(evento.getFecha())
+                .descripcion(evento.getDescripcion())
+                .fechaCreacion(evento.getFechaCreacion())
+                .fechaModificacion(evento.getFechaModificacion())
+                .build();
+    }
+
     public List<EventoDTO> listaEventoHaciaEventoDto(List<Evento> listaEvento){
         List<EventoDTO> listaEventoDTO = listaEvento.stream().map(
                 list -> EventoDTO.builder()
