@@ -7,6 +7,7 @@ import com.bcom.apibcomevents.evento.infraestructura.mapper.EventoMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,14 +15,14 @@ import java.util.Optional;
 @AllArgsConstructor
 public class RepositorioControladorEventoImpl implements RepositorioControladorEvento {
 
-    private final JpaRepositorio jpaRepositorio;
+    private final JpaRepositorioEvento jpaRepositorioEvento;
     private final EventoMapper eventoMapper;
 
     @Override
     public Optional<EventoDTO> agregarUnEventoConUsuario(EventoDTO eventoDTO, Long idUsuario) {
-        Evento eventoAGuardar = jpaRepositorio.save(eventoMapper.eventoDtoHaciaEvento(eventoDTO));
+        Evento eventoAGuardar = jpaRepositorioEvento.save(eventoMapper.eventoDtoHaciaEvento(eventoDTO));
         eventoAGuardar.setIdCreador(idUsuario);
-        jpaRepositorio.save(eventoAGuardar);
+        jpaRepositorioEvento.save(eventoAGuardar);
         if (eventoAGuardar == null){
             return Optional.empty();
         }
@@ -30,17 +31,17 @@ public class RepositorioControladorEventoImpl implements RepositorioControladorE
 
     @Override
     public List<EventoDTO> listarEventos() {
-        return eventoMapper.listaEventoHaciaEventoDto(jpaRepositorio.findAll());
+        return eventoMapper.listaEventoHaciaEventoDto(jpaRepositorioEvento.findAll());
     }
 
     @Override
     public Optional<EventoDTO> actualizarEvento(EventoDTO eventoDTO, Long idEvento) {
-        Optional<EventoDTO> eventoDTO1 = null;
-        Evento eventoABuscar = jpaRepositorio.findById(idEvento).get();
+        Evento eventoABuscar = jpaRepositorioEvento.findById(idEvento).get();
         eventoABuscar.setNombre(eventoDTO.getNombre());
         eventoABuscar.setFecha(eventoDTO.getFecha());
         eventoABuscar.setDescripcion(eventoDTO.getDescripcion());
-        return Optional.of(eventoMapper.eventoHaciaEventoDto(jpaRepositorio.save(eventoABuscar)));
+        eventoABuscar.setFechaModificacion(new Date());
+        return Optional.of(eventoMapper.eventoHaciaEventoDto(jpaRepositorioEvento.save(eventoABuscar)));
 
     }
 }
