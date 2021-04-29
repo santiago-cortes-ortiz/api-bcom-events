@@ -6,6 +6,7 @@ import com.bcom.apibcomevents.usuario.dominio.service.ControladorServicioUsuario
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,7 +21,7 @@ public class ControladorServicioUsuarioImpl implements ControladorServicioUsuari
     }
 
     @Override
-    public Optional<UsuarioDTO> buscarUsuarioPorId(Long id) {
-        return repositorioControoladorUsuario.buscarUsuarioPorId(id);
+    public List<UsuarioDTO> listarUsuarios() {
+        return repositorioControoladorUsuario.listarUsuarios();
     }
 }
