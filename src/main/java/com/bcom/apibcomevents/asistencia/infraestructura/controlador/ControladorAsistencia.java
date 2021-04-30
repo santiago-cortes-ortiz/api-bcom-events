@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("asistencia")
+@CrossOrigin(origins = "http://localhost:8081")
 @AllArgsConstructor
 public class ControladorAsistencia {
 
