@@ -13,4 +13,6 @@ public interface RepositorioControladorEvento {
 
     Optional<EventoDTO> actualizarEvento(EventoDTO eventoDTO,Long idEvento);
 
+    boolean eliminarEventoPorId(Long id);
+
 }

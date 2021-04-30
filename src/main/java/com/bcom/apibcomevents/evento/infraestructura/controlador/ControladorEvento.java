@@ -38,4 +38,13 @@ public class ControladorEvento {
         return new ResponseEntity<>(eventoAModificar.get(),HttpStatus.ACCEPTED);
     }
 
+    @DeleteMapping("/eventos/{idEvento}")
+    public ResponseEntity<HttpStatus> eliminarEventoPorId(@PathVariable("idEvento") Long idEvento){
+        if (controladorServicioEvento.eliminarEventoPorId(idEvento)){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+
 }

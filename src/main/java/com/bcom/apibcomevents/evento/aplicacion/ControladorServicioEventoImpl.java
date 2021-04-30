@@ -29,4 +29,9 @@ public class ControladorServicioEventoImpl implements ControladorServicioEvento 
     public Optional<EventoDTO> actualizarEvento(EventoDTO eventoDTO, Long idEvento) {
         return repositorioControladorEvento.actualizarEvento(eventoDTO, idEvento);
     }
+
+    @Override
+    public boolean eliminarEventoPorId(Long id) {
+        return repositorioControladorEvento.eliminarEventoPorId(id);
+    }
 }

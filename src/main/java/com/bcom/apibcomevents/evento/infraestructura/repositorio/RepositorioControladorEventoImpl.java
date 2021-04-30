@@ -44,4 +44,15 @@ public class RepositorioControladorEventoImpl implements RepositorioControladorE
         return Optional.of(eventoMapper.eventoHaciaEventoDto(jpaRepositorioEvento.save(eventoABuscar)));
 
     }
+
+    @Override
+    public boolean eliminarEventoPorId(Long id){
+        try{
+            jpaRepositorioEvento.findById(id);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
