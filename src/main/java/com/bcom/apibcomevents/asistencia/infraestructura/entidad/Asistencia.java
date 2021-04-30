@@ -20,11 +20,11 @@ public class Asistencia {
     @EmbeddedId
     private AsistenciaPK asistenciaPK;
 
-    @ManyToOne(optional = false,cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_usuario",referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
     private Usuario usuario;
 
-    @ManyToOne(optional = false,cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_evento" ,referencedColumnName = "id",nullable = false, updatable = false,insertable = false)
     private Evento evento;
 

@@ -1,5 +1,7 @@
 package com.bcom.apibcomevents.evento.infraestructura.repositorio;
 
+import com.bcom.apibcomevents.asistencia.infraestructura.entidad.Asistencia;
+import com.bcom.apibcomevents.asistencia.infraestructura.repositorio.JpaRepositorioAsistencia;
 import com.bcom.apibcomevents.evento.dominio.dto.EventoDTO;
 import com.bcom.apibcomevents.evento.dominio.repositorio.RepositorioControladorEvento;
 import com.bcom.apibcomevents.evento.infraestructura.entidad.Evento;
@@ -17,6 +19,7 @@ public class RepositorioControladorEventoImpl implements RepositorioControladorE
 
     private final JpaRepositorioEvento jpaRepositorioEvento;
     private final EventoMapper eventoMapper;
+    private final JpaRepositorioAsistencia jpaRepositorioAsistencia;
 
     @Override
     public Optional<EventoDTO> agregarUnEventoConUsuario(EventoDTO eventoDTO, Long idUsuario) {
@@ -48,7 +51,9 @@ public class RepositorioControladorEventoImpl implements RepositorioControladorE
     @Override
     public boolean eliminarEventoPorId(Long id){
         try{
-            jpaRepositorioEvento.findById(id);
+            List<Asistencia> asistencias = jpaRepositorioAsistencia.findByAsistenciaPK_IdEvento(id);
+            jpaRepositorioAsistencia.deleteAll(asistencias);
+            jpaRepositorioEvento.deleteById(id);
             return true;
         }catch(Exception e){
             e.printStackTrace();

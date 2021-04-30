@@ -40,7 +40,7 @@ public class ControladorEvento {
 
     @DeleteMapping("/eventos/{idEvento}")
     public ResponseEntity<HttpStatus> eliminarEventoPorId(@PathVariable("idEvento") Long idEvento){
-        if (controladorServicioEvento.eliminarEventoPorId(idEvento)){
+        if (controladorServicioEvento.eliminarEventoPorId(idEvento) == true){
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
